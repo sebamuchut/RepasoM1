@@ -13,4 +13,10 @@
  * @returns {boolean} - deberia retornar true o false.
  */
 
-function BinaryToDecimal(binary, base) {}
+function BinaryToDecimal(binary, base) {
+    let entero = 0;
+    for (let i=0; i < binary.length; i++){
+        entero += binary[i]*(Math.pow(base, i));
+    }
+    return entero;
+}
