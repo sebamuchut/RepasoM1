@@ -7,4 +7,7 @@
  * @returns {Number} - deberia retornar un number.
  */
 
-function productOfArray(arr) {}
+ function productOfArray(arr) {
+    var resultado = arr.reduce((acc, item)=> {return acc*item}, 1);
+    console.log(resultado);
+    }

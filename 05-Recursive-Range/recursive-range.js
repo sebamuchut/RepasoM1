@@ -8,5 +8,13 @@
  * @param {Array} arr1 - esto es un array.
  * @returns {Array || undefined} - deberia retornar un array o undefined.
  */
+// var num = 6;
 
-function recursiveRange(num) {}
+function recursiveRange(num) {
+    if (num <= 1) {
+      return 1;
+    }else {
+      return num + recursiveRange(num-1);
+      }
+    
+    }
