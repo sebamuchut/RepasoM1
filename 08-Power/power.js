@@ -7,5 +7,13 @@
  * @param {Array} arr1 - esto es un array.
  * @returns {Array || undefined} - deberia retornar un array o undefined.
  */
-
-function power(base, exp) {}
+ function power(base, exp) {
+    var producto = base;
+   while(x<exp){
+    
+     producto = producto * base;
+     x+=1;
+     }
+   return producto;
+   
+   }

@@ -1,18 +1,19 @@
-class Node {
-  constructor(value) {
+function Node (value) {
     this.value = value;
     this.left = null;
     this.right = null;
   }
-}
 
-class BinarySearchTree {
-  constructor() {
+
+function BinarySearchTree () {
     this.root = null;
   }
 
-  insert(value) {
+  BinarySearchTree.prototype.insert = function(value) {
     // escribe un metodo que inserte un nodo al final
+   
+    
+    
   }
 
   find(value) {
