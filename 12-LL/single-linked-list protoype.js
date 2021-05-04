@@ -6,34 +6,69 @@ function Node (val) {
 
 function SinglyLinkedList () {
     this.head = null;
-    this.tail = null;
+    this.tail = null; //acá se indica el nodo que está al final de la lista. 
     this.length = 0;
   }
 SinglyLinkedList.prototype.push = function (val) {
     // El metodo push nos permite insertar un nuevo valor AL FINAL
+    
+    //creo un nuevo nodo que recibirá el valor que le pasemos
     var nuevonodo = new Node(val);
-    if (!this.head){
+    if (!this.head){ //si el nodo padre está vacío, metemos ahí el nodo
       this.head = nuevonodo;
-      this.tail = nuevonodo;
+      this.tail = nuevonodo; //como es el único nodo de la lista, también va a ser su propio tail
       this.length++;
-    } else {
+    } else { //si hay varios elementos vamos recorriendo hasta el último
       var current = this.head;
       while(current.next){
         current = current.next;        
       }
-      current.next = nuevonodo;
-      this.tail = nuevonodo;
+      current.next = nuevonodo; //al último current.next (que es null) le agregamos nuestro nodo
+      this.tail = nuevonodo; //tenemos un nuevo tail porque lo agregamos al final
       this.length++;
     }
 
   }
 
-  pop() {
+  SinglyLinkedList.prototype.pop = function () {
     // El metodo pop nos permite eliminar un nuevo valor AL FINAL
+    if(this.length === 0) return null;
+    if(this.length === 1) { 
+      var cabeza = this.head; //creo esta var solo para retornarla luego
+      this.head = null; //vaciamos entonces el head y el tail. Nos queda una lista vacía
+      this.tail = null;
+      return cabeza;
+    }
+    var current = this.head;
+    var anterior;
+    while(current.next){ //recorremos la lista hasta llegar al último
+      anterior = current;
+      current = current.next;
+    }
+    var nodo = current;
+    anterior.next = null; //anterior.next es el next que tiene el anteultimo nodo. Lo vaciamos y eliminamos el último nodo
+    this.tail = anterior; //entonces el tail va a ser ese nodo que ahora es el último
+    this.length--;
+    return nodo;
+    
   }
 
-  shift() {
+  SinglyLinkedList.prototype.shift = function () {
     // El metodo pop nos permite eliminar un nuevo valor AL PRINCIPIO
+    if (!this.head) return 'no hay lista';
+    if (this.head){ 
+      if (!this.head.next){ //si esto es true, la lista tiene un solo elemento
+        var nodo = this.head;
+        this.head = null; //eliminamos el elemento o nodo
+        this.tail = null;
+        return nodo;
+      } else {
+        var nodo = this.head;
+        this.head = this.head.next; //cambiamos el this.head por el que le seguía. Así eliminamos el primero
+        return nodo;
+      }
+    }
+
   }
 
   unshift(data) {
