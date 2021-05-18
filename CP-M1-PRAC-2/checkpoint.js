@@ -119,7 +119,49 @@ OrderedLinkedList.prototype.print = function () {
 // > LL.print()
 // < 'head --> 5 --> 4 --> 1 --> null'
 
-OrderedLinkedList.prototype.add = function (val) {};
+OrderedLinkedList.prototype.add = function (val) {
+  var node = new Node(val);
+  if(!this.head){
+    this.head = node;
+    return node;
+  }
+  if(val>=this.head.value){
+    var aux = this.head;
+    this.head = node;
+    this.head.next = aux;
+    return node;
+  }else{
+  if(!this.head.next){
+    if(val>this.head.value){
+      var aux = this.head;
+      this.head = node;
+      this.head.next = aux;
+      return node;
+    }
+    if(val<=this.head.value){
+      this.head.next = node;
+      return node;
+    }
+  }else{
+    var current = this.head;
+    var anterior;
+    while(current.next){
+      anterior = current;
+      current = current.next;
+      if(val>current.value){
+        var aux = current
+        current = node;
+        anterior.next = current
+        current.next = aux;
+        return node;
+      }
+    }
+    current.next = node;
+    return node;
+  }
+  }
+
+};
 
 // EJERCICIO 5
 // Crea el metodo 'removeHigher' que deve devolver el valor mas alto de la linked list
@@ -136,7 +178,18 @@ OrderedLinkedList.prototype.add = function (val) {};
 // > LL.removeHigher()
 // < null
 
-OrderedLinkedList.prototype.removeHigher = function () {};
+OrderedLinkedList.prototype.removeHigher = function () {
+  if(!this.head) return null;
+  if(!this.head.next){
+    var aux = this.head.value;
+    this.head = null;
+    return aux;
+  }else{
+    var aux = this.head.value;
+    this.head = this.head.next;
+    return aux;
+  }
+};
 
 // EJERCICIO 6
 // Crea el metodo 'removeLower' que deve devolver el valor mas bajo de la linked list
