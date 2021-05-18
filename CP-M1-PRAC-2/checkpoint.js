@@ -206,7 +206,24 @@ OrderedLinkedList.prototype.removeHigher = function () {
 // > LL.removeHigher()
 // < null
 
-OrderedLinkedList.prototype.removeLower = function () {};
+OrderedLinkedList.prototype.removeLower = function () {
+  if(!this.head)return null;
+  if(!this.head.next){
+    var aux = this.head.value;
+    this.head = null;
+    return aux;
+  }else{
+    var current = this.head;
+    var anterior;
+    while(current.next){
+      anterior = current;
+      current = current.next;
+    }
+    var valor = current.value;
+    anterior.next = null;
+    return valor;
+  }
+};
 
 // ----- QUEUE -----
 
