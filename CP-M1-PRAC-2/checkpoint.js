@@ -94,19 +94,36 @@ function direcciones(laberinto, direccion = "") {
 function deepEqualArrays(arr1, arr2) {
   var union1 = '';
   var union2 = '';
+
+  //creo una función para pasar numeros a string
   function x (item){
-    if(typeof item === 'number'){
-      var n = item.toString();
-    }
+    var n = item.toString();
+    return n;
   }
+
+//recorre el array. Si el elemento es number, lo transformo con mi func y le agrego una 'n'
+//Si el elemento es string le agrego una 's'
   arr1.forEach(element => {
-    x(element);
-    union1 += element
+    if (typeof element === 'number'){
+      x(element);
+      union1 = union1 + 'n' + element;
+    }
+    if (typeof element === 'string'){
+      union1 = union1 + 's' + element;
+    }
+    
   });
   arr2.forEach(element => {
-    x(element);
-    union2 += element
+    if (typeof element === 'number'){
+      x(element);
+      union2 = union2 + 'n' + element;
+    }
+    if (typeof element === 'string'){
+      union2 = union2 + 's' + element;
+    }
   });
+
+
   if(union1 === union2)return true;
   return false;
 
@@ -399,22 +416,25 @@ function quickSort(array) {
 function reverse(num, lastNum = 0) {
 //lo siguiente es para saber cuántos dígitos tiene num 
 var numero = num;
-var mult = 0.1
-while(numero>=1){ // divido num por 10 y voy aumentando mult por 10. Mult al final me da un valor estilo 100, 10000, 1000000
+var mult = 0.1;
+while(numero >= 1){ // divido num por 10 y voy aumentando mult por 10. Mult al fiNal me da un valor estilo 100, 10000, 1000000
   numero /= 10;
-  mult *= 10
+  mult *= 10;
 }
   
 var alreves = 0; //este va a ser mi valor a devolver
   
-  while(num>=1){ 
+  while(num >= 1){ 
     var x = num % 10; // me voy a quedar con el resto (123 >>> 12,3    x=3)
+    num = (num/10) - (x * 0.1);
     x *= mult // ese resto lo multiplico por el mult. Ahi muevo el ultimo dígito al primer lugar (3 >>> 300)
-    num = Math.floor(num/10); // divido num pero me quedo con el entero (123 >>> 12,3 >>> 12)
+    //num = Math.floor(num/10); // divido num pero me quedo con el entero (123 >>> 12,3 >>> 12)
+    
     alreves += x; // en la primer vuelta alreves va a ser 300, en la segunda 320, en la tercera 321
     mult /= 10; //voy bajando la cantidad de 'ceros' de mult
   }
-  return alreves
+  return alreves 
+  //VER ERROR DEL TESTING!!
 }
 
 
